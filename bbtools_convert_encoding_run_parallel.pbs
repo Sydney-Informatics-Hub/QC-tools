@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Run bbtools_convert_encoding.sh
+# Runs bbtools reformat.sh and converts Illumina quality scores of fastq files
+
+#PBS -P er01
+#PBS -N bbtools_convert_encoding
+#PBS -l walltime=01:00:00,ncpus=48,mem=192GB,wd
+#PBS -q normal
+#PBS -W umask=022
+#PBS -l storage=scratch/er01+scratch/hm82
+#PBS -o ./Logs/bbtools_convert_encoding.o
+#PBS -e ./Logs/bbtools_convert_encoding.e
+
+module load openmpi/4.0.2
+module load nci-parallel/1.0.0
+set -e
+
+# M = Number of tasks per node
+# NCPUs = CPUs per task
+M=48
+NCPUS=1
+
+SCRIPT=./bbtools_convert_encoding.sh
+INPUTS=./Inputs/bbtools_convert_encoding.inputs
+
+echo "$(date): Running BBtools reformat.sh to convert Illumina quality encoding scores in fastq files."
+
+sed "s|^|${SCRIPT} |" ${INPUTS} > ${PBS_JOBFS}/input-file
+
+mpirun --np $((M * PBS_NCPUS / 48)) \
+	--map-by node:PE=${NCPUS} \
+	nci-parallel \
+	--verbose \
+	--input-file ${PBS_JOBFS}/input-file
