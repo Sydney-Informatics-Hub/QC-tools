@@ -7,7 +7,8 @@
 # 	Creates input file for fastqc_run_parallel.pbs
 # 	Inputs will be created for all fastq.gz files in ../Fastq
 # Usage: 
-#	sh fastqc_make_input.sh
+#	Run from QC-tools directory:
+# 	sh fastqc_make_input.sh
 # Resource requirements:
 # 	48 RNASeq fastq file=walltime=00:10:00,ncpus=48,mem=192GB,wd
 # 	Multiply walltime or number of CPUs according to fastq number/size
