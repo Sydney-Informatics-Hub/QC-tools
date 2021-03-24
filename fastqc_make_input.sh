@@ -3,16 +3,17 @@
 #########################################################
 #
 # Platform: NCI Gadi HPC
-# Description: 
-# 	Creates input file for fastqc_run_parallel.pbs
-# 	Inputs will be created for all fastq.gz files in ../Fastq
-# Usage: 
-#	Run from QC-tools directory:
-# 	sh fastqc_make_input.sh
+# Description:
+#       Creates input file for fastqc_run_parallel.pbs
+#       Inputs will be created for all fastq.gz files in
+#       nominated directory
+# Usage:
+#       Run from QC-tools directory:
+#       sh fastqc_make_input.sh /path/to/Fastqdir
 # Resource requirements:
-# 	48 RNASeq fastq file=walltime=00:10:00,ncpus=48,mem=192GB,wd
-# 	Multiply walltime or number of CPUs according to fastq number/size
-# 	fastQC efficiency ~0.9 - 1
+#       48 RNASeq fastq file=walltime=00:10:00,ncpus=48,mem=192GB,wd
+#       Multiply walltime or number of CPUs according to fastq number/size
+#       fastQC efficiency ~0.9 - 1
 # Author: Tracy Chew
 # tracy.chew@sydney.edu.au
 # Date last modified: 23/02/2021
@@ -29,9 +30,16 @@
 #
 #########################################################
 
-Fastq=../Fastq
-outdir=../FastQC_test
-logdir=../Logs/FastQC_test
+if [ -z "$1" ]
+then
+        echo "Please provide the path to the directory with your FASTQ files, e.g. sh fastqc_make_input.sh ../Fastq"
+        exit
+fi
+
+# INPUTS
+Fastq=$1
+outdir=../FastQC
+logdir=../Logs/FastQC
 INPUTS=./Inputs
 input_file=${INPUTS}/fastqc.inputs
 NCPUS=1
