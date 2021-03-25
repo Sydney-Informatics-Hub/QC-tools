@@ -31,3 +31,7 @@ Suggested acknowledgements:
 __NCI Gadi__
 
 The authors acknowledge the technical assistance provided by the Sydney Informatics Hub, a Core Research Facility of the University of Sydney. This research/project was undertaken with the assistance of resources and services from the National Computational Infrastructure (NCI), which is supported by the Australian Government.
+
+# References
+
+FastQC https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
