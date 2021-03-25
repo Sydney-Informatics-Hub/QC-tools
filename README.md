@@ -2,6 +2,19 @@
 
 The scripts in this repository contain scripts that can be used to quality check raw sequencing files. The scripts have been specifically optimised to run efficiently and at scale on the __National Compute Infrastructure, Gadi.__
 
+# FastQC
+
+The following scripts produce quality reports from FASTQC for a list of `fastq.gz` files. Each FASTQ file is a task and tasks can be processed in parallel.
+
+1. Create the inputs for the tasks:
+
+       sh fastqc_make_input /path/to/dir
+      
+2. Adjust <project>, compute resources and your version of fastqc in `fastqc_run_parallel.pbs`
+3. Run the script:
+
+       qsub fastqc_run_parallel.pbs
+
 # Cite us to support us!
 
 If you use our pipelines, please cite us:
