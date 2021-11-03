@@ -1,4 +1,0 @@
-# Pawsey Nimbus
-
-Documentation
-
